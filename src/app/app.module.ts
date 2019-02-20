@@ -5,6 +5,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+
+//forms
+import { FormsModule } from "@angular/forms";
+
+//http
+import { HttpClientModule } from "@angular/common/http";
+
 //routes
 import { routing, appRoutingProviders } from "./app.routing";
 
@@ -16,6 +23,8 @@ import { routing, appRoutingProviders } from "./app.routing";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     routing
   ],
   providers: [
