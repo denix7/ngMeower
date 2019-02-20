@@ -1,0 +1,99 @@
+<h2 class="text-center">{{title}}</h2>
+
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-5 m-3">
+  <div class="form-group" [ngClass]="{'has-danger': name.errors?.required || name.errors?.minlength}">
+   
+    <label for="">Nombre</label>
+    <input type="text" 
+            name="name" 
+            #name="ngModel" 
+            [(ngModel)]="user.name" 
+            class="form-control" 
+            placeholder="Ejemplo: Bu" 
+            required minlength="2">
+    
+            <div *ngIf="name.errors?.required" class="form-control-feedback">
+              El campo es requerido
+            </div>
+            <div *ngIf="name.errors?.minlength">
+              Por lo menos {{name.errors.minlength.requiredLength}} caracteres
+            </div>
+  </div>
+
+  <div class="form-group">
+    <label for="">Apellido</label>
+    <input type="text" 
+            name="surname" 
+            #surname="ngModel" 
+            [(ngModel)]="user.surname" 
+            class="form-control" 
+            placeholder="Primer Apellido" 
+            required minlength="2">
+
+            <div *ngIf="surname.errors?.required" class="form-control-feedback">
+                El campo es requerido
+            </div>
+            <div *ngIf="surname.errors?.minlength">
+              Por lo menos {{surname.errors.minlength.requiredLength}} caracteres
+            </div>
+           
+  </div>
+
+  <div class="form-group">
+    <label for="">Nick</label>
+    <input type="text" 
+            name="nick" 
+            #nick="ngModel" 
+            [(ngModel)]="user.nick" 
+            class="form-control" 
+            placeholder="Ejm: @deni77"
+            required minlength="2">
+
+            <div *ngIf="nick.errors?.required">
+              El campo es requerido
+            </div>
+            <div *ngIf="nick.errors?.minlength">
+              Por lo menos {{nick.errors.minlength.requiredLength}} caracteres
+            </div>
+  </div>
+
+  <div class="form-group">
+    <label for="">Correo</label>
+    <input type="email" 
+            name="email" 
+            #email="ngModel" 
+            [(ngModel)]="user.email" 
+            class="form-control"
+            placeholder="Ejm: algo@algo.com"
+            required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+            <div *ngIf="email.errors?.required">
+              El campo es requerido
+            </div>
+            <div *ngIf="email.errors?.pattern">
+                Debe ser un correo valido
+              </div>
+  </div>
+
+  <div class="form-group">
+    <label for="">Contraseña</label>
+    <input type="password" 
+            name="password"  
+            #password="ngModel" 
+            [(ngModel)]="user.password" 
+            class="form-control"
+            placeholder="Ejm: Nadsf8879_dsfGG"
+            autocomplete="password"
+            required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"> 
+            <!-- (?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$  Mayus, Minus, nume, especial chars y 8 caracteres-->
+
+            <div *ngIf="password.errors?.required">
+              El campo es requerido
+            </div>
+            <div *ngIf="password.errors?.pattern">
+              Debe contener mayusculas, numeros, y caracteres
+            </div>
+  </div>
+
+  <input type="submit" value="{{title}}" class="btn btn-success btn-block" [disabled]="!registerForm.form.value">
+</form>
