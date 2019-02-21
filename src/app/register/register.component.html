@@ -1,5 +1,12 @@
 <h2 class="text-center">{{title}}</h2>
 
+<div class="alert alert-success" *ngIf="status === 'success'">
+  Registrado con exito <a [routerLink]="['/login']">Iniciar sesion</a>
+</div>
+<div class="alert alert-danger" *ngIf="status === 'error'">
+  No se ha podido registrar
+</div>
+
 <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-5 m-3">
   <div class="form-group" [ngClass]="{'has-danger': name.errors?.required || name.errors?.minlength}">
    

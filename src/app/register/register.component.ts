@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   public title:string;
   public user:User;
+  public status: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -33,7 +34,17 @@ export class RegisterComponent implements OnInit {
     // console.log("form post");
     // console.log(registerForm)
     // console.log(this.user)
-    this._userService.register();
+    this._userService.register(this.user)
+        .subscribe(res =>{
+          if(res.user && res.user._id){
+            this.status = "success";
+            registerForm.reset();//deja limpio el formulario cuando es correcto
+          }else{
+            this.status = "error";
+          }
+        },error => {
+          console.log(error);
+        })
   }
 
 }
