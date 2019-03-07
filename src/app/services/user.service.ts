@@ -16,9 +16,20 @@ export class UserService {
 
    //metodo para registrar usuario
   register(user: User): Observable<any>{//devuelve un observable
-   let params = JSON.stringify(user);
-   let headers = new HttpHeaders().set('Content-Type', 'application/json')
+   let params = JSON.stringify(user);//convierte objeto a string
+   let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this._http.post(this.url+'register', params, {headers})
+   }
+
+   //Metodo para loguear un usuario y obtener tokken
+   signup(user, gettoken=null): Observable<any>{
+     if(gettoken != null){
+       user.gettoken = gettoken;
+     }
+    let params = JSON.stringify(user);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+
+    return this._http.post(this.url+'login', params, {headers})
    }
 }

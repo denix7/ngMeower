@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  //Registrar usuario y valido
   onSubmit(registerForm){
     // console.log("form post");
     // console.log(registerForm)

@@ -1,0 +1,4 @@
+.ng-invalid.ng-touched:not(form) {/*se aplica a todo menos el formulario*/
+    border: 1px solid rgb(255, 82, 82);
+    box-shadow: 2px 2px 2px rgb(255, 112, 112);
+}

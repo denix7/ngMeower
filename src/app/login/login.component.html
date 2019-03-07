@@ -1,3 +1,52 @@
-<p>
-  {{login}}
-</p>
+<h2 class="text-center">{{title}}</h2>
+
+<div class="alert alert-success" *ngIf="status === 'success'">
+  Bienvenido!
+</div>
+<div class="alert alert-danger" *ngIf="status === 'error'">
+  No se ha podido Iniciar Sesion
+</div>
+
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()"  class="col-md-5 m-3">
+
+  <div class="form-group">
+    <label for="">Correo</label>
+    <input type="email" 
+            name="email" 
+            #email="ngModel" 
+            [(ngModel)]="user.email" 
+            class="form-control"
+            placeholder="Ejm: algo@algo.com"
+            required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+            <div *ngIf="email.errors?.required">
+              El campo es requerido
+            </div>
+            <div *ngIf="email.errors?.pattern">
+                Debe ser un correo valido
+              </div>
+  </div>
+
+  <div class="form-group">
+    <label for="">Contraseña</label>
+    <input type="password" 
+            name="password"  
+            #password="ngModel" 
+            [(ngModel)]="user.password" 
+            class="form-control"
+            placeholder="Ejm: Nadsf8879_dsfGG"
+            autocomplete="password"
+            required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"> 
+            <!-- (?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$  Mayus, Minus, nume, especial chars y 8 caracteres-->
+
+            <div *ngIf="password.errors?.required">
+              El campo es requerido
+            </div>
+            <div *ngIf="password.errors?.pattern">
+              Debe contener mayusculas, numeros, y caracteres
+            </div>
+  </div>
+
+  <input type="submit" value="{{title}}" class="btn btn-success btn-block" [disabled]="!loginForm.form.value">
+  
+</form>
