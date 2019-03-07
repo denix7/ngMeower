@@ -14,12 +14,20 @@ import { HttpClientModule } from "@angular/common/http";
 
 //routes
 import { routing, appRoutingProviders } from "./app.routing";
+import { HomeComponent } from './components/home/home.component';
+import { AmigosComponent } from './components/amigos/amigos.component';
+import { MiPeriflComponent } from './components/mi-perifl/mi-perifl.component';
+import { MisDatosComponent } from './components/mis-datos/mis-datos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    AmigosComponent,
+    MiPeriflComponent,
+    MisDatosComponent
   ],
   imports: [
     BrowserModule,

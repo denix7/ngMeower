@@ -8,30 +8,30 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['/inicio']" routerLinkActive="active" >Inicio <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Amigos</a>
+        <a class="nav-link" [routerLink]="['/amigos']" routerLinkActive="active" >Amigos</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Opciones
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Buscar</a>
-          <a class="dropdown-item" href="#">Seguidores</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Salir</a>
-        </div>
-      </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li> -->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
+    <!-- Opciones -->
+    <div class="form-inline my-2 my-lg-0">
+      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Iniciar</button> -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Opciones
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/mi-perfil']" routerLinkActive="router-link-active" >Mi Perfil {{identity.name}}</a>
+            <a class="dropdown-item" [routerLink]="['/mis-datos']" routerLinkActive="router-link-active" >Mis Datos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['/salir']" routerLinkActive="router-link-active" >Salir</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -39,8 +39,10 @@
 <app-register></app-register> -->
 <div class="container">
   <div class="m-5">
-    <a class="btn btn-primary btn-md btn-block" [routerLink]="['login']" routerLinkActive="router-link-active" >Login</a>
-    <a class="btn btn-primary btn-md btn-block" [routerLink]="['register']" routerLinkActive="router-link-active" >Register</a>
+    <div *ngIf="!identity">
+      <a class="btn btn-primary btn-md btn-block" [routerLink]="['login']" routerLinkActive="router-link-active" >Login</a>
+      <a class="btn btn-primary btn-md btn-block" [routerLink]="['register']" routerLinkActive="router-link-active" >Register</a>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>

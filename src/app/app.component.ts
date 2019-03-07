@@ -19,7 +19,7 @@ export class AppComponent {
     console.log(this.identity);
   }
 
-  //cada vez que se actualiza este dato se actualiza dinamicamente toda la pagina 
+  //cada vez que se actualiza este dato se actualiza dinamicamente toda la pagina, para que nos muestre la barra si un usuario esta identificado
   ngDoCheck(){
     this.identity = this._userService.getIdentity();
   }
