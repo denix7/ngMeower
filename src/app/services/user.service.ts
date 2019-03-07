@@ -10,6 +10,9 @@ import { GLOBAL } from "./global";
 export class UserService {
 
   public url:string;
+  public identity;
+  public token;
+
   constructor(private _http: HttpClient) {
     this.url = GLOBAL.url;
    }
@@ -31,5 +34,29 @@ export class UserService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
 
     return this._http.post(this.url+'login', params, {headers})
+   }
+
+   //Obtener datos de usuario del localStroage
+   getIdentity(){
+    let identity = JSON.parse(localStorage.getItem('identity'));//cnvierte el identity del localStorage y lo convierte a Json
+    if(identity != "undefined"){
+      this.identity = identity;
+    }else{
+      this.identity = null;
+    }
+
+    return this.identity;
+   }
+
+   //Obtener el token del localStorage
+   getToken(){
+     let token = localStorage.getItem('token');
+     if(token != "undefined"){
+      this.token = token;
+     }else{
+       this.token = null;
+     }
+
+     return this.token;
    }
 }
