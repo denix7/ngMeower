@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
             //Conseguir el token
             //Este metodo devuelve el token porque se envia un parametro string true
             this.getToken();
-          
+            
+            //Iniciado sesion redirigir a home
+            this._router.navigate(['home']);
           }
           this.status = 'success';
         },

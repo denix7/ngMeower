@@ -27,7 +27,7 @@
             <a class="dropdown-item" [routerLink]="['/mi-perfil']" routerLinkActive="router-link-active" >Mi Perfil {{identity.name}}</a>
             <a class="dropdown-item" [routerLink]="['/mis-datos']" routerLinkActive="router-link-active" >Mis Datos</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" [routerLink]="['/salir']" routerLinkActive="router-link-active" >Salir</a>
+            <a (click)=logout() class="dropdown-item" [routerLink]="['/salir']" routerLinkActive="router-link-active" >Salir</a>
           </div>
         </li>
       </ul>
