@@ -85,4 +85,13 @@ export class UserService {
 
       return this.stats;
    }
+
+   //Actualizar Datos de Usuario
+   updateUser(user:User): Observable<any>{
+    let params = JSON.stringify(user);//convierte objeto a string
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.getToken());
+
+    return this._http.put(this.url+'update/'+user._id, params, {headers})
+  }
 }
