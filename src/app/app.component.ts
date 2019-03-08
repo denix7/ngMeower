@@ -18,6 +18,7 @@ export class AppComponent {
   }
 
   ngOnInit(){
+    //if(this._userService.getIdentity())
     this.identity = this._userService.getIdentity();
     console.log(this.identity);
   }

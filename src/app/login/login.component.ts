@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   public status: string = "";
   public identity;
   public token;
+  public counts;
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
@@ -40,34 +41,36 @@ export class LoginComponent implements OnInit {
           }else{
             this.status = 'success';
             //Persistir datos del usuario en localstorage
-            localStorage.setItem('identity', JSON.stringify(this.identity));
+            localStorage.setItem('identity', JSON.stringify(this.identity));  //LocalStorage solo almacena strings por eso parceamos
             //Conseguir el token
             //Este metodo devuelve el token porque se envia un parametro string true
             this.getToken();
-            
-            //Iniciado sesion redirigir a home
             this._router.navigate(['home']);
+            
+            //Iniciado sesion y conseguir los counts del user logueado,redirigir a home
+            //sthis.getCount();
           }
           this.status = 'success';
         },
         error => {
           console.log(error);
           this.status = 'error';
-      })
-    
+        })
+        
   }
-  getToken(){ //Este metodo devuelve el token porque se envia un parametro string true
+
+  getToken(){ //Este metodo devuelve el token porque se envia un parametro string true (el API asi lo solicita)
     this._userService.signup(this.user, 'true')
     .subscribe(res => {
-      console.log(res);
+      //console.log(res);
       this.token = res.token; //se obtiene el token porque res retorna una propiedad token 
       
-      if(this.token.length<=0){
+      if(this.token.lenght<=0){//si token no es valido
         this.status = 'error';
       }else{
-        this.status = 'success';
         //Persistir token del usuario en localStorage
-        localStorage.setItem('token', this.token);//se mantiene la sesion
+        localStorage.setItem('token', this.token);//Al ser el token una cadena no es necesario parsear, se manda directo
+        this.getCounters();   //debe ejecutarse despues de que el token se guardo en localstorage
         //Conseguir estadisticas y contadores de usuarios
       }
       this.status = 'success';
@@ -75,7 +78,18 @@ export class LoginComponent implements OnInit {
     error => {
       console.log(error);
       this.status = 'error';
-  })
+    })
   }
-
+  
+  //Obtener counts (follows y followins) de un usuario que esta almacenado en localStorage
+  getCounters(){
+    this._userService.getCounters() //estamos obteniendo los counters del usuario actual que se encuentra en localStorage
+        .subscribe( res =>{   //los counts que recibimos del servicio podemos almacenarlos en local para ahorrar peticiones 
+      console.log(res);
+      localStorage.setItem('counts', JSON.stringify(res)); //convertimos el JSON a string porque es el formato que recibe el loalstorage
+     
+    })
+  }
+      
 }
+    
