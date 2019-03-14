@@ -39,7 +39,7 @@ export class UserService {
 
    //Obtener datos de usuario del localStroage
    getIdentity(){
-    let identity = JSON.parse(localStorage.getItem('identity'));//cnvierte el identity del localStorage y lo convierte a Json
+    let identity = JSON.parse(localStorage.getItem('identity'));//agarra el identity del localStorage y lo convierte a Json
     if(identity != "undefined"){
       this.identity = identity;
     }else{
@@ -74,7 +74,7 @@ export class UserService {
      }
    }
 
-   //Para no sacar localStorage cada vez haremos una funcion
+   //Para no sacar localStorage cada vez haremos, una funcion
    getStats(){
      let stats = JSON.parse(localStorage.getItem('stats'));
 

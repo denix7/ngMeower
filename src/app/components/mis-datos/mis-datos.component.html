@@ -4,7 +4,7 @@
   Actualizado con exito <a [routerLink]="['/home']">Volver</a>
 </div>
 <div class="alert alert-danger" *ngIf="status === 'error'">
-  No se ha podido registrar
+  No se ha podido actualizar, Usuario o correo ya existen
 </div>
 
 <form #misDatosForm="ngForm" (ngSubmit)="onSubmit(misDatosForm)" class="col-md-5 m-3">
@@ -80,6 +80,12 @@
               <div *ngIf="email.errors?.pattern">
                   Debe ser un correo valido
                 </div>
+    </div>
+
+    //Subir Archivo de perfil
+    <div class="form-group">
+      <label for="">Subir Avatar</label>
+      <input type="file" placeholder="Subir Imagen">
     </div>
   
     <input type="submit" value="{{title}}" class="btn btn-warning btn-block" [disabled]="!misDatosForm.form.value">

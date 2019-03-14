@@ -45,7 +45,7 @@ export class MisDatosComponent implements OnInit {
         .subscribe(res =>{
           this.status = 'success';
           console.log(res)
-          localStorage.setItem('identity', JSON.stringify(this.user));
+          localStorage.setItem('identity', JSON.stringify(this.user));  //actualizar el localStorage con this.user, NO con lo que hay en res
         },
         error => {
           var errorMessage = <any>error;

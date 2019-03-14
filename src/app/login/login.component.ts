@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   //Loguear usuario y conseguir datos. Se esta haciendo 2 peticiones ajax (obtener el usuario identificado y obtener su token)
   onSubmit(){
     this._userService.signup(this.user) //le paso el objeto que ya va rrellenado
-        .subscribe(res => {
+        .subscribe(res => { //solo se manda un usuario y el API responde con un usuario
           this.identity = res.user;
           //console.log(this.identity);
           if(!this.identity || !this.identity._id){
@@ -60,8 +60,8 @@ export class LoginComponent implements OnInit {
   }
 
   getToken(){ //Este metodo devuelve el token porque se envia un parametro string true (el API asi lo solicita)
-    this._userService.signup(this.user, 'true')
-    .subscribe(res => {
+    this._userService.signup(this.user, 'true') //llama al mismo servicio signup pero en este caso no manda null, sino una cadena 
+    .subscribe(res => { //al mandar el usuario y una cadena, el API responde con un token
       //console.log(res);
       this.token = res.token; //se obtiene el token porque res retorna una propiedad token 
       
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
       }else{
         //Persistir token del usuario en localStorage
         localStorage.setItem('token', this.token);//Al ser el token una cadena no es necesario parsear, se manda directo
-        this.getCounters();   //debe ejecutarse despues de que el token se guardo en localstorage
+        this.getCounters();   //debe ejecutarse despues de que el token se guardo en localstorage, estamos solicitando los datos del usuario logueado
         //Conseguir estadisticas y contadores de usuarios
       }
       this.status = 'success';
