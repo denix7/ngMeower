@@ -82,10 +82,12 @@
                 </div>
     </div>
 
-    //Subir Archivo de perfil
+    <!-- Subir Archivo de perfil -->
     <div class="form-group">
       <label for="">Subir Avatar</label>
-      <input type="file" placeholder="Subir Imagen">
+      <input type="file"
+              (change)="fileChangeEvent($event)"
+              placeholder="Subir Imagen">
     </div>
   
     <input type="submit" value="{{title}}" class="btn btn-warning btn-block" [disabled]="!misDatosForm.form.value">

@@ -94,4 +94,6 @@ export class UserService {
 
     return this._http.put(this.url+'update/'+user._id, params, {headers})
   }
+
+  
 }
