@@ -26,6 +26,9 @@ const appRoutes: Routes = [
         path: 'amigos', component: AmigosComponent
     },
     {
+        path: 'amigos/:page', component: AmigosComponent
+    },
+    {
         path: 'mi-perfil', component: MiPeriflComponent
     },
     {

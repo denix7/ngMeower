@@ -1,3 +1,14 @@
-<p>
-  amigos works!
-</p>
+<div class="col-lg-8">
+  <h2 class="text-align-left mt-5">{{title}}</h2>
+</div>
+
+<div class="row">
+  <div class="card" style="width: 18rem;" *ngFor="let user of users">
+    <img src={{url+'get-image-user/'+user.image}} alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{user.name}}</h5>
+      <p class="card-text">{{user.nick}}</p>
+      <a href="#" class="btn btn-primary">Follow</a>
+    </div>
+  </div>
+</div>

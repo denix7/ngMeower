@@ -18,6 +18,8 @@ export class UserService {
     this.url = GLOBAL.url;
    }
 
+
+  //  ---------REGISTER COMPONENT--------
    //metodo para registrar usuario
   register(user: User): Observable<any>{//devuelve un observable
    let params = JSON.stringify(user);//convierte objeto a string
@@ -26,6 +28,7 @@ export class UserService {
     return this._http.post(this.url+'register', params, {headers})
    }
 
+  //  ---------LOGIN COMPONENT--------------
    //Metodo para loguear un usuario y obtener tokken
    signup(user, gettoken=null): Observable<any>{
      if(gettoken != null){
@@ -95,5 +98,20 @@ export class UserService {
     return this._http.put(this.url+'update/'+user._id, params, {headers})
   }
 
-  
+  //  -------------AMIGOS COMPONENT-------------------
+  // Obtener usuarios paginados,  para listado de usuarios
+  getUsers(page = null): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.getToken());
+
+    return this._http.get(this.url+'users/'+page, {headers})                                   
+  }
+
+  // Obtener usuarios de un usuario concreto, para perfil de usuario
+  getUsersId(id): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.getToken());
+
+    return this._http.get(this.url+'users/'+id, {headers})                                   
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, DoCheck } from '@angular/core';
 import { UserService } from "../app/services/user.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import { GLOBAL } from './services/global';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,13 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class AppComponent {
   title = 'Design Social';
   public identity;
+  public url: string;
 
   constructor(private _userService: UserService,
               private _router: Router,
               private _activatedRouter: ActivatedRoute){
+
+                this.url = GLOBAL.url;
 
   }
 
